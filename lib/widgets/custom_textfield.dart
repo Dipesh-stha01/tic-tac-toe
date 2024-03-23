@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:tictactoe_game/utils/colors.dart';
 
-class CustomTextfield extends StatelessWidget {
+import '../utils/colors.dart';
+
+
+class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
-
-  const CustomTextfield({
-    super.key,
+  final bool isReadOnly;
+  const CustomTextField({
+    Key? key,
     required this.controller,
     required this.hintText,
-  });
+    this.isReadOnly = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +23,11 @@ class CustomTextfield extends StatelessWidget {
             color: Colors.blue,
             blurRadius: 5,
             spreadRadius: 2,
-          ),
+          )
         ],
       ),
       child: TextField(
+        readOnly: isReadOnly,
         controller: controller,
         decoration: InputDecoration(
           fillColor: bgColor,

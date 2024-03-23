@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:tictactoe_game/responsive/responsive.dart';
-import 'package:tictactoe_game/screens/create_room_screen.dart';
-import 'package:tictactoe_game/screens/join_room_screen.dart';
-import 'package:tictactoe_game/widgets/custom_button.dart';
+
+import '../responsive/responsive.dart';
+import '../widgets/custom_button.dart';
+import 'create_room_screen.dart';
+import 'join_room_screen.dart';
 
 class MainMenuScreen extends StatelessWidget {
   static String routeName = '/main-menu';
-  const MainMenuScreen({super.key});
+  const MainMenuScreen({Key? key}) : super(key: key);
 
   void createRoom(BuildContext context) {
     Navigator.pushNamed(context, CreateRoomScreen.routeName);
@@ -19,27 +20,21 @@ class MainMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Responsive(
-            child: CustomButton(
-              onTap: () {
-                createRoom(context);
-              },
+      body: Responsive(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CustomButton(
+              onTap: () => createRoom(context),
               text: 'Create Room',
             ),
-          ),
-          const SizedBox(height: 20),
-          Responsive(
-            child: CustomButton(
-              onTap: () {
-                joinRoom(context);
-              },
+            const SizedBox(height: 20),
+            CustomButton(
+              onTap: () => joinRoom(context),
               text: 'Join Room',
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
